@@ -1,4 +1,4 @@
---Listar o nome do cliente, nome do produto e o valor total da venda.
+--1 - Listar o nome do cliente, nome do produto e o valor total da venda.
 USE [BancoTreino]
 
 SELECT 
@@ -13,7 +13,7 @@ ON B.IdProduto = c.IdProduto
 Group by a.Nome, c.NomeProduto
 
 
---Mostrar o total gasto por cada cliente, ordenado do maior para o menor.
+--2 - Mostrar o total gasto por cada cliente, ordenado do maior para o menor.
 
 SELECT
 a.Nome as 'Nome do Cliente',
@@ -27,7 +27,7 @@ GROUP BY a.Nome
 ORDER BY 'Valor Gasto' desc
 
 
---Exibir os 3 produtos mais vendidos (em quantidade total).
+--3 - Exibir os 3 produtos mais vendidos (em quantidade total).
 
 SELECT
 TOP 3 
@@ -39,7 +39,7 @@ ON a.IdProduto = b.IdProduto
 group by  b.NomeProduto
 order by Quantidade desc
 
---Mostrar o faturamento total de cada cidade.
+--4- Mostrar o faturamento total de cada cidade.
 
 SELECT
 A.Cidade,
@@ -52,7 +52,7 @@ ON B.IdProduto = C.IdProduto
 GROUP BY A.Cidade
 
 
---Encontrar o cliente que mais comprou em valor total.
+--5 - Encontrar o cliente que mais comprou em valor total.
 
 SELECT 
 TOP 1
@@ -65,7 +65,7 @@ JOIN [BancoTreino]..Produtos c
 ON b.IdProduto = C.IdProduto
 GROUP BY a.NOME
 
---Extra (nível bônus) Crie uma view chamada vw_FaturamentoMensal que mostre: O mês (MM/YYYY), O total faturado no mês
+--Extra (nÃ­vel bÃ´nus) Crie uma view chamada vw_FaturamentoMensal que mostre: O mÃªs (MM/YYYY), O total faturado no mÃªs
 
 CREATE VIEW vw_FaturamentoMensal AS
 SELECT
@@ -74,4 +74,5 @@ SUM(a.quantidade*b.preco) as 'Total Faturado no Mes'
 FROM [BancoTreino]..Vendas A
 JOIN [BancoTreino]..Produtos B
 ON A.IdProduto = B.IdProduto
+
 GROUP BY A.DataVenda;
